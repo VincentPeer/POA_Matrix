@@ -6,14 +6,18 @@
 #define POA_MATRIX_MATRIX_H
 
 #include <algorithm>
+#include <iostream>
+
 
 class Matrix {
    const size_t N, M;
    const unsigned n;
    int* tab;
 
+	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
 public:
    Matrix(size_t N, size_t M, unsigned n);
+
 
 };
 
