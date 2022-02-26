@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/vince/Documents/Heig/Semestre4/POA/Laboratoires/Labo01/POA_Matrix/Matrix.cpp">
+			<Option target="POA_Matrix"/>
+		</Unit>
+		<Unit filename="C:/Users/vince/Documents/Heig/Semestre4/POA/Laboratoires/Labo01/POA_Matrix/Matrix.h">
+			<Option target="POA_Matrix"/>
+		</Unit>
 		<Unit filename="C:/Users/vince/Documents/Heig/Semestre4/POA/Laboratoires/Labo01/POA_Matrix/main.cpp">
 			<Option target="POA_Matrix"/>
 		</Unit>

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/POA_Matrix.dir/Matrix.cpp.obj"
   "CMakeFiles/POA_Matrix.dir/main.cpp.obj"
   "POA_Matrix.exe"
   "POA_Matrix.exe.manifest"
