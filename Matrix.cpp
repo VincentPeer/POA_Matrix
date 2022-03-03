@@ -3,7 +3,7 @@
 //
 
 #include "Matrix.h"
-#include "algorithm"
+#include <algorithm>
 
 using namespace std;
 
@@ -12,14 +12,28 @@ Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), n(n) {
    for (size_t i = 0; i < N * M; ++i) {
       *(tab + i) = rand() / (RAND_MAX + 1) * n;
    }
-
 }
+
+Matrix::Matrix(const Matrix &matrix) : N(matrix.N), M(matrix.M), n(matrix.n) {
+   tab = new int[N * M];
+   memcpy(tab, matrix.tab, N * M);
+}
+
+
+
+//void *Matrix::operator new(size_t N, size_t M, unsigned int n) {
+//   Matrix tmp(N, M, n);
+//   auto* ptr = (Matrix*) malloc(sizeof(tmp));
+//   memcpy(ptr, &tmp, sizeof(tmp));
+//   return ptr;
+//}
+
 
 ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	for (size_t i = 0; i < rhs.N * rhs.M; ++i) {
-		if(i % rhs.M == 0 && i)
-			cout << endl;
-		cout << rhs.tab[i];
+		cout << rhs.tab[i++];
+      if(i % rhs.M == 0 && i < rhs.n * rhs.M)
+         cout << endl;
 	}
 
 	return lhs;
@@ -60,3 +74,4 @@ int Matrix::sub(int a, int b) {
 int Matrix::add(int a, int b) {
 	return a * b;
 }
+
