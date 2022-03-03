@@ -19,6 +19,8 @@ Matrix::Matrix(const Matrix &matrix) : N(matrix.N), M(matrix.M), n(matrix.n) {
    memcpy(tab, matrix.tab, N * M);
 }
 
+
+
 //void *Matrix::operator new(size_t N, size_t M, unsigned int n) {
 //   Matrix tmp(N, M, n);
 //   auto* ptr = (Matrix*) malloc(sizeof(tmp));
@@ -37,10 +39,8 @@ ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	return lhs;
 }
 
-Matrix Matrix::operator+(const Matrix &rhs) const {
-   Matrix cpy = *this;
-   for_each(cpy, rhs,  add);
-   return cpy;
+Matrix Matrix::operator+(Matrix rhs) const {
+   return rhs += *this;
 }
 
 Matrix& Matrix::operator+=(const Matrix& rhs) {

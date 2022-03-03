@@ -27,7 +27,7 @@ public:
    friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
 
 //   void* operator new(size_t N, size_t M, unsigned n);
-	Matrix operator+(const Matrix& rhs) const;
+	Matrix operator+(Matrix rhs) const;
 	Matrix& operator+=(const Matrix& rhs);
 	static Matrix* newSum(const Matrix& a, const Matrix& b);
 
