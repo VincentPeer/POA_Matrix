@@ -7,27 +7,26 @@
 
 using namespace std;
 
+
 Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), n(n) {
-   tab = new int[N * M];
-   for (size_t i = 0; i < N * M; ++i) {
-      *(tab + i) = rand() / (RAND_MAX + 1) * n;
-   }
+	allocate();
+	for (size_t i = 0; i < M; ++i)
+		for (size_t j = 0; j < M; ++j)
+			tab[i][j] = rand() / (RAND_MAX + 1) * n;
 }
 
 Matrix::Matrix(const Matrix &matrix) : N(matrix.N), M(matrix.M), n(matrix.n) {
-   tab = new int[N * M];
-   memcpy(tab, matrix.tab, N * M);
+	allocate();
+	for (size_t i = 0; i < N; ++i) {
+		memcpy(tab[i], matrix.tab[i], M);
+	}
 }
 
-
-
-//void *Matrix::operator new(size_t N, size_t M, unsigned int n) {
-//   Matrix tmp(N, M, n);
-//   auto* ptr = (Matrix*) malloc(sizeof(tmp));
-//   memcpy(ptr, &tmp, sizeof(tmp));
-//   return ptr;
-//}
-
+void Matrix::allocate() {
+	tab = new int*[N];
+	for (size_t i = 0; i < N; ++i)
+		tab[i] = new int[M];
+}
 
 ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	for (size_t i = 0; i < rhs.N * rhs.M; ++i) {

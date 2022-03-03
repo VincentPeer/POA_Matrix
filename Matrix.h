@@ -12,8 +12,9 @@
 class Matrix {
    const size_t N, M;
    const unsigned n; // todo n -> MODULUS ? (const en majuscul)
-   int* tab;
+   int tab[][];
 
+   void allocate();
 	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
 	friend Matrix* operator+(const Matrix& lhs, const Matrix& rhs);
 	static int add(int a, int b);
