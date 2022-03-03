@@ -15,12 +15,16 @@ class Matrix {
    int* tab;
 
 	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
-	friend Matrix& operator+(const Matrix& lhs, const Matrix& rhs);
 	friend Matrix* operator+(const Matrix& lhs, const Matrix& rhs);
+	static int add(int a, int b);
+	static int sub(int a, int b);
+	static int multiply(int a, int b);
+	static void for_each(Matrix& m1, const Matrix& m2, int (*f)(int a, int b));
 public:
    Matrix(size_t N, size_t M, unsigned n);
    Matrix(const Matrix& matrix);
-	Matrix operator+(const Matrix& rhs);
+	Matrix operator+(Matrix rhs) const;
+	Matrix& operator+=(const Matrix& rhs);
 
    Matrix operator-(const Matrix& rhs);
    Matrix operator*(const Matrix& rhs);
