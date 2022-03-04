@@ -8,14 +8,14 @@
 using namespace std;
 
 
-Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), n(n) {
+Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), MODULUS(n) {
 	allocate();
 	for (size_t i = 0; i < M; ++i)
 		for (size_t j = 0; j < M; ++j)
 			tab[i][j] = rand() / (RAND_MAX + 1) * n;
 }
 
-Matrix::Matrix(const Matrix &matrix) : N(matrix.N), M(matrix.M), n(matrix.n) {
+Matrix::Matrix(const Matrix &matrix) : N(matrix.N), M(matrix.M), MODULUS(matrix.MODULUS) {
 	allocate();
 	for (size_t i = 0; i < N; ++i) {
 		memcpy(tab[i], matrix.tab[i], M);
@@ -31,26 +31,26 @@ void Matrix::allocate() {
 ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	for (size_t i = 0; i < rhs.N * rhs.M; ++i) {
 		cout << rhs.tab[i++];
-      if(i % rhs.M == 0 && i < rhs.n * rhs.M)
+      if(i % rhs.M == 0 && i < rhs.MODULUS * rhs.M)
          cout << endl;
 	}
-
 	return lhs;
 }
 
-Matrix& Matrix::operator+=(const Matrix &rhs) {
-	for_each(*this, rhs, add);
+Matrix& Matrix::add(const Matrix &rhs) {
+	for_each(*this, rhs, addElement);
 	return *this;
 }
 
-Matrix Matrix::operator+(Matrix rhs) const {
-	return rhs += *this;
+Matrix Matrix::add(Matrix rhs) const {
+	rhs.add(*this);
+	return rhs;
 }
 
-Matrix* operator+(const Matrix& lhs, const Matrix& rhs) {
-	Matrix* tmp = new Matrix(max(lhs.M, rhs.M), max(lhs.N, rhs.N), rhs.n);
-	//*tmp = lhs.operator+(rhs);
-	return tmp;
+Matrix* Matrix::addDynamic(const Matrix& rhs) const {
+	Matrix tmp (*this);
+	tmp.add(rhs);
+	return &tmp;
 }
 
 void Matrix::for_each(Matrix& m1, const Matrix& m2, int (*f)(int, int)) { // todo si m1 < m2 alors i hors mémoire
@@ -60,17 +60,15 @@ void Matrix::for_each(Matrix& m1, const Matrix& m2, int (*f)(int, int)) { // tod
 	}
 }
 
-
-
-int Matrix::multiply(int a, int b) {
+int Matrix::multiplyElement(int a, int b) {
 	return a + b;
 }
 
-int Matrix::sub(int a, int b) {
+int Matrix::subElement(int a, int b) {
 	return a - b;
 }
 
-int Matrix::add(int a, int b) {
+int Matrix::addElement(int a, int b) {
 	return a * b;
 }
 
