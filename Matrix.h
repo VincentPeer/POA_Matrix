@@ -8,25 +8,70 @@
 #include <algorithm>
 #include <iostream>
 
+typedef enum {MODIFY, COPY, DYNAMIC} OperationType;
 
 class Matrix {
-   const size_t N, M;
-   const unsigned MODULUS;
-   int** tab;
+   size_t N, M;
+   unsigned MODULUS;
+   int** tab{};
 
+   /**
+    * Allocation de la memoire de tab
+    */
    void allocate();
+
+   /**
+    * Surcharge de opérateur écriture dans un flux
+    * @param lhs
+    * @param rhs
+    * @return
+    */
 	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
-//	friend Matrix* operator+(const Matrix& lhs, const Matrix& rhs);
-	static int addElement(int a, int b);
-	static int subElement(int a, int b);
-	static int multiplyElement(int a, int b);
-	static void for_each(Matrix& m1, const Matrix& m2, int (*f)(int a, int b));
+
+	/**
+	 * Applique la fonction f entre chaque elements correspondants des tableaux et insert le résultat
+	 * dans le tableau
+	 * @param rhs operand gauche
+	 * @param f la fonction définissant opération a effectuer
+	 * @return le tableau modifier
+	 */
+	Matrix& for_each(const Matrix& rhs, int (*f)(int a, int b));
+
+	/**
+	 * Constructeur copy avec N et/ou M plus grand que la matrice a copier
+	 * @param matrix
+	 * @param M
+	 * @param N
+	 */
+	Matrix(const Matrix& matrix, size_t M, size_t N);
+
 public:
+   /**
+    * Constructeur avec valeurs aléatoires
+    * @param N nombre de lignes de la matrice
+    * @param M nombre de colones de la matrice
+    * @param n valeur max
+    */
    Matrix(size_t N, size_t M, unsigned n);
+
+   /**
+    * Constructeur par copie
+    * @param matrix la matrice a copier
+    */
    Matrix(const Matrix& matrix);
+
+   // -- ADD ---
 	Matrix& add(const Matrix& rhs);
-	Matrix add(Matrix rhs) const;
+	Matrix add(const Matrix& rhs) const;
 	Matrix* addDynamic(const Matrix& rhs) const;
+	// --- SUB
+   Matrix& sub(const Matrix& rhs);
+   Matrix sub(const Matrix& rhs) const;
+   Matrix* subDynamic(const Matrix& rhs) const;
+   // --- MULTYPLY ---
+   Matrix& multiply(const Matrix& rhs);
+   Matrix multiply(const Matrix& rhs) const;
+   Matrix* multiplyDynamic(const Matrix& rhs) const;
 
 
 };
