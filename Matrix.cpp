@@ -54,9 +54,11 @@ Matrix* Matrix::addDynamic(const Matrix& rhs) const {
 }
 
 void Matrix::for_each(Matrix& m1, const Matrix& m2, int (*f)(int, int)) { // todo si m1 < m2 alors i hors mémoire
-	size_t size = max(m1.M * m1.N, m2.M * m2.N);
-	for (size_t i = 0; i < size; ++i) {
-		m1.tab[i] = f(m1.tab[i], m2.tab[i]);
+	size_t columns = max(m1.M , m2.M);
+	size_t rows = max(m1.N, m2.N);
+	for (size_t i = 0; i < columns; ++i) {
+      for (size_t j = 0; j < rows; ++j)
+         m1.tab[i][j] = f(m1.tab[i][j], m2.tab[i][j]);
 	}
 }
 

@@ -12,7 +12,7 @@
 class Matrix {
    const size_t N, M;
    const unsigned MODULUS;
-   int tab[][];
+   int** tab;
 
    void allocate();
 	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
