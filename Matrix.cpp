@@ -30,10 +30,10 @@ Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), MODULUS(n) {
 			tab[i][j] = rand() / (RAND_MAX + 1) * n;
 }
 
-// constructeur copy
+// Constructeur copy, renvoie juste le travail au constructeur copie specialise
 Matrix::Matrix(const Matrix &matrix) : Matrix(matrix, matrix.M, matrix.N) {}
 
-// constructeur copy special
+// Constructeur copy specialise
 Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) :  M(M), N(N), MODULUS(matrix.MODULUS) {
    if (M < matrix.M || N < matrix.N)
       throw runtime_error("Given sizes too small"); // todo a faire pour methode privee?
@@ -60,13 +60,19 @@ void Matrix::allocate() {
    }
 }
 
-ostream& operator<<(ostream& lhs, const Matrix& rhs) {
-	for (size_t i = 0; i < rhs.N * rhs.M; ++i) {
-		cout << rhs.tab[i++];
-      if(i % rhs.M == 0 && i < rhs.MODULUS * rhs.M)
-         cout << endl;
-	}
-	return lhs;
+ostream& operator<<(ostream& stream, const Matrix& matrix) {
+   cout << "[";
+   for (size_t i = 0;  i < matrix.M; ++i) {
+      if (i) cout << endl; // Pas la 1ere iteration
+      cout << "[";
+      for (size_t j = 0; j < matrix.N * matrix.M; ++j) {
+         if (j) cout << ", "; // Pas la 1ere iteration
+         cout << matrix.tab[i][j];
+      }
+      cout << "]";
+   }
+   cout << "]";
+	return stream;
 }
 
 // --- ADD ---
