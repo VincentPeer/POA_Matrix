@@ -8,10 +8,9 @@
 #include <algorithm>
 #include <iostream>
 
-typedef enum {MODIFY, COPY, DYNAMIC} OperationType;
 
 class Matrix {
-   size_t N, M;
+   size_t M, N;
    unsigned MODULUS;
    int** tab{};
 
