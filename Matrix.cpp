@@ -36,29 +36,53 @@ Matrix::Matrix(const Matrix &matrix) : Matrix(matrix, matrix.M, matrix.N) {}
 // Constructeur copy specialise
 Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) :  M(M), N(N), MODULUS(matrix.MODULUS) {
    if (M < matrix.M || N < matrix.N)
-      throw runtime_error("Given sizes too small"); // todo a faire pour methode privee?
+      throw runtime_error("Given sizes are too small"); // todo a faire pour methode privee?
    allocate();
-
-   // Copie des valeurs
-   for (size_t i = 0; i < matrix.M; ++i) {
-      memcpy(tab[i], matrix.tab[i], matrix.N);
-      // Mise des valeur a 0 si ce tableau a plus de colones
-      for (size_t j = matrix.N; j < M; ++j)
-         tab[i][j] = 0;
-   }
-   // Mise des valeur a 0 si ce tableau est plus grand
-   for (size_t i = matrix.M; i < M; ++i) {
-      for (size_t j = 0; j < N; ++j)
-         tab[i][j] = 0;
-   }
+   copyTab(matrix);
 }
 
 void Matrix::allocate() {
 	tab = new int*[M];
-	for (size_t i = 0; i < M; ++i) {
+	for (size_t i = 0; i < M; ++i)
       tab[i] = new int[N];
-   }
 }
+
+void Matrix::copyTab(const Matrix &matrix) {
+   // Copie des valeurs
+   for (size_t i = 0; i < matrix.M; ++i) {
+      memcpy(tab[i], matrix.tab[i], matrix.N);
+      // Mise des valeur a 0 si ce tableau a plus de colones
+      memset(tab[i] + matrix.N, 0, (N - matrix.N) * sizeof(int));
+   }
+   // Mise des valeur a 0 si ce tableau est plus grand
+   for (size_t i = matrix.M; i < M; ++i)
+      memset(tab[i], 0, N * sizeof(int));
+}
+
+Matrix::~Matrix() {
+   deleteTab();
+}
+
+void Matrix::deleteTab() {
+   for (size_t i = 0; i < M; ++i)
+      delete[] tab[i];
+   delete[] tab;
+}
+
+Matrix &Matrix::operator=(const Matrix &matrix) {
+   if (&matrix != this) {
+      MODULUS = matrix.MODULUS;
+      if (M != matrix.M || N != matrix.N) {
+         deleteTab();
+         M = matrix.M;
+         N = matrix.N;
+         allocate();
+      }
+      copyTab(matrix);
+   }
+   return *this;
+}
+
 
 ostream& operator<<(ostream& stream, const Matrix& matrix) {
    cout << "[";
@@ -82,7 +106,7 @@ Matrix& Matrix::add(const Matrix &rhs) {
 }
 
 // retour par copy
-Matrix Matrix::add(const Matrix& rhs) const {
+Matrix Matrix::addToCpy(const Matrix& rhs) const {
    Matrix tmp(*this, max(M, rhs.M), max(N, rhs.N));
 	return tmp.add(rhs);;
 }
@@ -144,6 +168,12 @@ Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
 	}
    return *this;
 }
+
+
+
+
+
+
 
 
 

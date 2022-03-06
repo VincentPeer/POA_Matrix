@@ -21,12 +21,23 @@ class Matrix {
    void allocate();
 
    /**
-    * Surcharge de opérateur écriture dans un flux
-    * @param lhs
-    * @param rhs
-    * @return
+    * Copie les valeurs d'un tableau
+    * @param matrix la matrice qui contient le tableau a copier
     */
-	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
+   void copyTab(const Matrix& matrix);
+
+   /**
+    * libere la memoire reservee pour le tableau
+    */
+   void deleteTab();
+
+   /**
+    * Opérateur d'écriture dans un flux
+    * @param stream le flux dans lequel écrire
+    * @param matrix la matrice
+    * @return le flux
+    */
+	friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
 
 	/**
 	 * Applique la fonction f entre chaque elements correspondants des tableaux et insert le résultat
@@ -60,9 +71,21 @@ public:
     */
    Matrix(const Matrix& matrix);
 
+   /**
+    * Destructeur
+    */
+   ~Matrix();
+
+   /**
+    * Opérateur d'affectation
+    * @param matrix la matrice a copier
+    * @return reference a la matrice modifiee
+    */
+   Matrix& operator=(const Matrix& matrix);
+
    // -- ADD ---
 	Matrix& add(const Matrix& rhs);
-	Matrix add(const Matrix& rhs) const;
+	Matrix addToCpy(const Matrix& rhs) const;
 	Matrix* addDynamic(const Matrix& rhs) const;
 	// --- SUB
    Matrix& sub(const Matrix& rhs);
