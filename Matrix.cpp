@@ -22,12 +22,12 @@ int addElement(int a, int b) {
 }
 
 // Constructeur nouvelle matrice
-Matrix::Matrix(size_t N, size_t M, unsigned n)  : N(N), M(M), MODULUS(n) {
+Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), MODULUS(n) {
 	allocate();
 	// Ajout de valeurs aléatoire
 	for (size_t i = 0; i < M; ++i)
-		for (size_t j = 0; j < M; ++j)
-			tab[i][j] = rand() / (RAND_MAX + 1) * n;
+		for (size_t j = 0; j < N; ++j)
+			tab[i][j] = rand() / (RAND_MAX + 1.) * n;
 }
 
 // Constructeur copy, renvoie juste le travail au constructeur copie specialise
@@ -51,10 +51,10 @@ void Matrix::copyTab(const Matrix &matrix) {
    // Copie des valeurs
    for (size_t i = 0; i < matrix.M; ++i) {
       memcpy(tab[i], matrix.tab[i], matrix.N);
-      // Mise des valeur a 0 si ce tableau a plus de colones
+      // Mise des valeurs à 0 si ce tableau a plus de colonnes
       memset(tab[i] + matrix.N, 0, (N - matrix.N) * sizeof(int));
    }
-   // Mise des valeur a 0 si ce tableau est plus grand
+   // Mise des valeurs à 0 si ce tableau est plus grand
    for (size_t i = matrix.M; i < M; ++i)
       memset(tab[i], 0, N * sizeof(int));
 }
@@ -85,17 +85,13 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
 
 
 ostream& operator<<(ostream& stream, const Matrix& matrix) {
-   cout << "[";
    for (size_t i = 0;  i < matrix.M; ++i) {
       if (i) cout << endl; // Pas la 1ere iteration
-      cout << "[";
-      for (size_t j = 0; j < matrix.N * matrix.M; ++j) {
-         if (j) cout << ", "; // Pas la 1ere iteration
+      for (size_t j = 0; j < matrix.N; ++j) {
+         if (j) cout << " "; // Pas la 1ere iteration
          cout << matrix.tab[i][j];
       }
-      cout << "]";
    }
-   cout << "]";
 	return stream;
 }
 
