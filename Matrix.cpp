@@ -108,7 +108,7 @@ Matrix& Matrix::add(const Matrix &rhs) {
 // retour par copy
 Matrix Matrix::addToCpy(const Matrix& rhs) const {
    Matrix tmp(*this, max(M, rhs.M), max(N, rhs.N));
-	return tmp.add(rhs);;
+	return tmp.add(rhs);
 }
 
 // Cree une nouvelle matrice
