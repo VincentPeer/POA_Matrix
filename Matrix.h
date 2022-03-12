@@ -152,7 +152,7 @@ public:
    /**
     * Prints the matrix
     */
-   void print();
+   void print() const;
 
 };
 

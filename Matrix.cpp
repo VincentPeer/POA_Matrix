@@ -169,7 +169,7 @@ Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
    return *this;
 }
 
-void Matrix::print() {
+void Matrix::print() const {
    cout << *this;
 }
 
