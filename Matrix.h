@@ -149,6 +149,11 @@ public:
     */
    Matrix* multiplyDynamic(const Matrix& rhs) const;
 
+   /**
+    * Prints the matrix
+    */
+   void print();
+
 };
 
 

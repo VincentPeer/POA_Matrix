@@ -25,7 +25,7 @@ int addElement(int a, int b) {
 // Constructeur nouvelle matrice
 Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
    if (M < 1 || N < 1 || n < 1)
-      throw runtime_error("Params must be greater than 0");
+      throw runtime_error("In Matrix constructor : Params must be greater than 0");
 
 	allocate();
 	// Ajout de valeurs aléatoire
@@ -41,7 +41,7 @@ Matrix::Matrix(const Matrix &matrix) : Matrix(matrix, matrix.M, matrix.N) {}
 // Constructeur de copie spécialisé
 Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) : M(M), N(N), modulus(matrix.modulus) {
    if (M < matrix.M || N < matrix.N)
-      throw runtime_error("Given sizes are too small");
+      throw runtime_error("In Matrix copy constructor : Given sizes are too small");
    allocate();
    copyTab(matrix);
 }
@@ -56,6 +56,7 @@ void Matrix::copyTab(const Matrix &matrix) {
    // Copie des valeurs
    for (size_t i = 0; i < matrix.M; ++i) {
       memcpy(tab[i], matrix.tab[i], matrix.N* sizeof(int));
+
       // Mise des valeurs à 0 si ce tableau a plus de colonnes
       memset(tab[i] + matrix.N, 0, (N - matrix.N) * sizeof(int));
    }
@@ -87,7 +88,6 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
    }
    return *this;
 }
-
 
 ostream& operator<<(ostream& stream, const Matrix& matrix) {
    for (size_t i = 0;  i < matrix.M; ++i) {
@@ -167,6 +167,10 @@ Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
          tab[i][j] = f(tab[i][j], rhs.tab[i][j]) % modulus;
 	}
    return *this;
+}
+
+void Matrix::print() {
+   cout << *this;
 }
 
 
