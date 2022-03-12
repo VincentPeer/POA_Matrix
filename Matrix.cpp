@@ -24,6 +24,9 @@ int addElement(int a, int b) {
 
 // Constructeur nouvelle matrice
 Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
+   if (M < 1 || N < 1 || n < 1)
+      throw runtime_error("Params must be greater than 0");
+
 	allocate();
 	// Ajout de valeurs aléatoire
 	RandUnsigned& rand = RandUnsigned::getInstance();

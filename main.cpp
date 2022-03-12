@@ -5,15 +5,13 @@ using namespace std;
 int main() {
 
 
-   Matrix a(3,3,1000);
-	cout << "a\n" << endl;
-   Matrix b(3,3,1000);
+   // test constructeur normal
+   Matrix a(3,3,10);
+	cout << "a\n" << a << endl;
 
-	cout << a << endl << endl;
-	cout << b << endl;
+   // test constructeur taille null
+   Matrix b(-1,0,10);
+   cout << "b\n" << b << endl;
 
-	a.sub(b);
-
-	cout << "a - b" << endl << a << endl;
 	return 0;
 }
