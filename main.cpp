@@ -3,16 +3,14 @@
 
 using namespace std;
 int main() {
-	srand(49);
+
 
    Matrix a(3,3,1000);
-	cout << "a\n" << a << endl;
+	cout << "a\n" << endl;
    Matrix b(3,3,1000);
-   a.add(b);
-	cout << "a + b" << endl << a << endl;
 
-	a.multiply(b);
-	cout << "a x b" << endl << a << endl;
+	cout << a << endl << endl;
+	cout << b << endl;
 
 	a.sub(b);
 

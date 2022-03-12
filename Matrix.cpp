@@ -3,6 +3,7 @@
 //
 
 #include "Matrix.h"
+#include "RandUnsigned.h"
 #include <algorithm>
 #include <cstring>
 
@@ -22,21 +23,22 @@ int addElement(int a, int b) {
 }
 
 // Constructeur nouvelle matrice
-Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), MODULUS(n) {
+Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
 	allocate();
 	// Ajout de valeurs aléatoire
+	RandUnsigned& rand = RandUnsigned::getInstance();
 	for (size_t i = 0; i < M; ++i)
 		for (size_t j = 0; j < N; ++j)
-			tab[i][j] = rand() / (RAND_MAX + 1.) * n;
+			tab[i][j] = rand.getUnsigned(modulus);
 }
 
 // Constructeur copy, renvoie juste le travail au constructeur copie specialise
 Matrix::Matrix(const Matrix &matrix) : Matrix(matrix, matrix.M, matrix.N) {}
 
 // Constructeur copy specialise
-Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) :  M(M), N(N), MODULUS(matrix.MODULUS) {
+Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) : M(M), N(N), modulus(matrix.modulus) {
    if (M < matrix.M || N < matrix.N)
-      throw runtime_error("Given sizes are too small"); // todo a faire pour methode privee?
+      throw runtime_error("Given sizes are too small");
    allocate();
    copyTab(matrix);
 }
@@ -71,7 +73,7 @@ void Matrix::deleteTab() {
 
 Matrix &Matrix::operator=(const Matrix &matrix) {
    if (&matrix != this) {
-      MODULUS = matrix.MODULUS;
+      modulus = matrix.modulus;
       if (M != matrix.M || N != matrix.N) {
          deleteTab();
          M = matrix.M;
@@ -150,17 +152,16 @@ Matrix* Matrix::multiplyDynamic(const Matrix& rhs) const {
 }
 
 Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
-   // todo demander assistant precision
    if (rhs.M > M || rhs.N > N)
-      throw runtime_error("Cant fit result in matrix");
+      throw runtime_error("Can't fit result in matrix");
    // Verification du module n
-   if(MODULUS != rhs.MODULUS)
+   if(modulus != rhs.modulus)
       throw invalid_argument("n modules don't match");
 
    // Applique le calcul dans une plage incluse dans les deux matrices
 	for (size_t i = 0; i < min(M, rhs.M); ++i) {
       for (size_t j = 0; j < min(N, rhs.N); ++j)
-         tab[i][j] = f(tab[i][j], rhs.tab[i][j]) % MODULUS;
+         tab[i][j] = f(tab[i][j], rhs.tab[i][j]) % modulus;
 	}
    return *this;
 }

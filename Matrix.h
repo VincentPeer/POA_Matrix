@@ -11,7 +11,7 @@
 
 class Matrix {
    size_t M, N;
-   unsigned MODULUS;
+   unsigned modulus;
    int** tab{};
 
    /**
@@ -26,7 +26,7 @@ class Matrix {
    void copyTab(const Matrix& matrix);
 
    /**
-    * libere la memoire reservee pour le tableau
+    * libère la memoire réservée pour le tableau
     */
    void deleteTab();
 
@@ -83,18 +83,71 @@ public:
    Matrix& operator=(const Matrix& matrix);
 
    // -- ADD ---
+   /**
+    * Additionne les valeurs de la 2e matrice a celle-ci
+    * @param rhs la 2e  matrice
+    * @return reference sur la matrice modifier
+    */
 	Matrix& add(const Matrix& rhs);
+
+	/**
+	 * Additionne les valeurs de deux matrices et retourne le resultat par copie
+	 * @param rhs la 2e matrice
+	 * @return la matrice resultante par copie
+	 */
 	Matrix addToCpy(const Matrix& rhs) const;
+
+   /**
+    * Additionne les valeurs de deux matrices et retourne le resultat dans une matrice cree dynamiquement
+    * @param rhs la 2e matrice
+    * @return un pointeur sur la matrice resultante
+    */
 	Matrix* addDynamic(const Matrix& rhs) const;
 	// --- SUB
-   Matrix& sub(const Matrix& rhs);
-   Matrix sub(const Matrix& rhs) const;
-   Matrix* subDynamic(const Matrix& rhs) const;
-   // --- MULTYPLY ---
-   Matrix& multiply(const Matrix& rhs);
-   Matrix multiply(const Matrix& rhs) const;
-   Matrix* multiplyDynamic(const Matrix& rhs) const;
 
+   /**
+    * Soustrait les valeurs de la 2e matrice a celle-ci
+    * @param rhs la 2e  matrice
+    * @return reference sur la matrice modifier
+    */
+   Matrix& sub(const Matrix& rhs);
+
+   /**
+	 * Soustrait les valeurs de la 2e matrices  a celle-ci et retourne le resultat par copie
+	 * @param rhs la 2e matrice
+	 * @return la matrice resultante par copie
+	 */
+   Matrix sub(const Matrix& rhs) const;
+
+   /**
+   * Soustrait les valeurs de la 2e matrices  a celle-ci et retourne le resultat dans une matrice cree dynamiquement
+   * @param rhs la 2e matrice
+   * @return un pointeur sur la matrice resultante
+   */
+   Matrix* subDynamic(const Matrix& rhs) const;
+
+   // --- MULTYPLY ---
+
+   /**
+   * Mutliplie les valeurs de la 2e matrice a celle-ci
+   * @param rhs la 2e  matrice
+   * @return reference sur la matrice modifier
+   */
+   Matrix& multiply(const Matrix& rhs);
+
+   /**
+	 * Mutliplie les valeurs de deux matrices et retourne le resultat par copie
+	 * @param rhs la 2e matrice
+	 * @return la matrice resultante par copie
+	 */
+   Matrix multiply(const Matrix& rhs) const;
+
+   /**
+    * Mutliplie les valeurs de deux matrices et retourne le resultat dans une matrice cree dynamiquement
+    * @param rhs la 2e matrice
+    * @return un pointeur sur la matrice resultante
+    */
+   Matrix* multiplyDynamic(const Matrix& rhs) const;
 
 };
 
