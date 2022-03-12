@@ -10,8 +10,15 @@ int main() {
 	cout << "a\n" << a << endl;
 
    // test constructeur taille null
-   Matrix b(-1,0,10);
-   cout << "b\n" << b << endl;
+   try {
+      Matrix b(0, 0, 10);
+   } catch (runtime_error e) {
+      cout << e.what() << endl;
+   }
+
+   // Test ope simple;
+   Matrix* c = a.addDynamic(a);
+   c->print();
 
 	return 0;
 }

@@ -3,4 +3,4 @@ project(POA_Matrix)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(POA_Matrix main.cpp Matrix.cpp Matrix.h)
+add_executable(POA_Matrix main.cpp Matrix.cpp Matrix.h RandUnsigned.cpp RandUnsigned.h)
