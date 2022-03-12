@@ -15,31 +15,31 @@ class Matrix {
    int** tab{};
 
    /**
-    * Allocation de la memoire de tab
+    * Allocation de la mémoire de tab
     */
    void allocate();
 
    /**
     * Copie les valeurs d'un tableau
-    * @param matrix la matrice qui contient le tableau a copier
+    * @param matrix la matrice qui contient le tableau à copier
     */
    void copyTab(const Matrix& matrix);
 
    /**
-    * libère la memoire réservée pour le tableau
+    * libère la mémoire réservée pour le tableau
     */
    void deleteTab();
 
    /**
-    * Opérateur d'écriture dans un flux
-    * @param stream le flux dans lequel écrire
+    * Opérateur d'écriture sur un flux
+    * @param stream le flux sur lequel écrire
     * @param matrix la matrice
-    * @return le flux
+    * @return une référence sur le flux
     */
 	friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
 
 	/**
-	 * Applique la fonction f entre chaque elements correspondants des tableaux et insert le résultat
+	 * Applique la fonction f entre chaque éléments correspondants des tableaux et insert le résultat
 	 * dans le tableau
 	 * @param rhs operand gauche
 	 * @param f la fonction définissant opération a effectuer
@@ -48,7 +48,7 @@ class Matrix {
 	Matrix& for_each(const Matrix& rhs, int (*f)(int a, int b));
 
 	/**
-	 * Constructeur copy avec N et/ou M plus grand que la matrice a copier
+	 * Constructeur de copie avec une valeur N et/ou M plus grande que celle de la matrice à copier
 	 * @param matrix
 	 * @param M
 	 * @param N
@@ -77,52 +77,52 @@ public:
 
    /**
     * Opérateur d'affectation
-    * @param matrix la matrice a copier
-    * @return reference a la matrice modifiee
+    * @param matrix la matrice à copier
+    * @return une référence sur la matrice modifiée
     */
    Matrix& operator=(const Matrix& matrix);
 
    // -- ADD ---
    /**
-    * Additionne les valeurs de la 2e matrice a celle-ci
-    * @param rhs la 2e  matrice
-    * @return reference sur la matrice modifier
+    * Additionne les valeurs de 2 matrices
+    * @param rhs la 2e matrice
+    * @return une référence sur la matrice modifiée
     */
 	Matrix& add(const Matrix& rhs);
 
 	/**
-	 * Additionne les valeurs de deux matrices et retourne le resultat par copie
+	 * Additionne les valeurs de deux matrices et retourne le résultat par copie
 	 * @param rhs la 2e matrice
-	 * @return la matrice resultante par copie
+	 * @return la matrice résultante par copie
 	 */
 	Matrix addToCpy(const Matrix& rhs) const;
 
    /**
-    * Additionne les valeurs de deux matrices et retourne le resultat dans une matrice cree dynamiquement
+    * Additionne les valeurs de deux matrices et retourne le résultat dans une matrice crée dynamiquement
     * @param rhs la 2e matrice
-    * @return un pointeur sur la matrice resultante
+    * @return un pointeur sur la matrice résultante
     */
 	Matrix* addDynamic(const Matrix& rhs) const;
 	// --- SUB
 
    /**
-    * Soustrait les valeurs de la 2e matrice a celle-ci
-    * @param rhs la 2e  matrice
-    * @return reference sur la matrice modifier
+    * Soustrait les valeurs de la 2 matrices
+    * @param rhs la 2e matrice
+    * @return une référence sur la matrice modifiée
     */
    Matrix& sub(const Matrix& rhs);
 
    /**
-	 * Soustrait les valeurs de la 2e matrices  a celle-ci et retourne le resultat par copie
+	 * Soustrait les valeurs de la 2e matrices à celle-ci et retourne le résultat par copie
 	 * @param rhs la 2e matrice
-	 * @return la matrice resultante par copie
+	 * @return la matrice résultante par copie
 	 */
    Matrix sub(const Matrix& rhs) const;
 
    /**
-   * Soustrait les valeurs de la 2e matrices  a celle-ci et retourne le resultat dans une matrice cree dynamiquement
+   * Soustrait les valeurs de la 2e matrices à celle-ci et retourne le résultat dans une matrice crée dynamiquement
    * @param rhs la 2e matrice
-   * @return un pointeur sur la matrice resultante
+   * @return un pointeur sur la matrice résultante
    */
    Matrix* subDynamic(const Matrix& rhs) const;
 
@@ -131,21 +131,21 @@ public:
    /**
    * Mutliplie les valeurs de la 2e matrice a celle-ci
    * @param rhs la 2e  matrice
-   * @return reference sur la matrice modifier
+   * @return une référence sur la matrice modifiée
    */
    Matrix& multiply(const Matrix& rhs);
 
    /**
-	 * Mutliplie les valeurs de deux matrices et retourne le resultat par copie
+	 * Mutliplie les valeurs de deux matrices et retourne le résultat par copie
 	 * @param rhs la 2e matrice
-	 * @return la matrice resultante par copie
+	 * @return la matrice résultante par copie
 	 */
    Matrix multiply(const Matrix& rhs) const;
 
    /**
-    * Mutliplie les valeurs de deux matrices et retourne le resultat dans une matrice cree dynamiquement
+    * Mutliplie les valeurs de deux matrices et retourne le résultat dans une matrice crée dynamiquement
     * @param rhs la 2e matrice
-    * @return un pointeur sur la matrice resultante
+    * @return un pointeur sur la matrice résultante
     */
    Matrix* multiplyDynamic(const Matrix& rhs) const;
 
