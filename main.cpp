@@ -10,8 +10,12 @@ int main() {
 	cout << "a\n" << a << endl;
 
    // test constructeur taille null
-   Matrix b(-1,0,10);
-   cout << "b\n" << b << endl;
+//   Matrix b(-1,0,10);
+//   cout << "b\n" << b << endl;
+
+   Matrix c(5,5,5);
+   c = a;
+   cout << c;
 
 	return 0;
 }
