@@ -6,6 +6,9 @@
 #define POA_MATRIX_RANDUNSIGNED_H
 
 
+/**
+ * De Bleser Dimitri et Peer Vincent
+ */
 class RandUnsigned {
 
    /**

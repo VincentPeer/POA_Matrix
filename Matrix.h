@@ -1,7 +1,3 @@
-//
-// Created by dimde on 2/24/2022.
-//
-
 #ifndef POA_MATRIX_MATRIX_H
 #define POA_MATRIX_MATRIX_H
 
@@ -9,6 +5,9 @@
 #include <iostream>
 
 
+/**
+ * De Bleser Dimitri et Peer Vincent
+ */
 class Matrix {
    size_t M, N;
    unsigned modulus;
@@ -44,6 +43,8 @@ class Matrix {
 	 * @param rhs operand gauche
 	 * @param f la fonction définissant opération a effectuer
 	 * @return le tableau modifier
+	 * @throw runtime_erreur exception levée si rhs possède une dimenstion plus grande que celle de this
+	 * @throw invalid_argument exception levée si les modulos des matrices sont différents
 	 */
 	Matrix& for_each(const Matrix& rhs, int (*f)(int a, int b));
 
@@ -52,6 +53,7 @@ class Matrix {
 	 * @param matrix
 	 * @param M
 	 * @param N
+	 * @throw runtime_error exception levée si M ou N inférieur à this.M ou this.N
 	 */
 	Matrix(const Matrix& matrix, size_t M, size_t N);
 
@@ -61,6 +63,7 @@ public:
     * @param N nombre de lignes de la matrice
     * @param M nombre de colones de la matrice
     * @param n valeur max
+    * @throw runtime_error exception levée si l'un des paramètre est nulle
     */
    Matrix(size_t N, size_t M, unsigned n);
 
