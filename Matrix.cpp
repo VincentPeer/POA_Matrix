@@ -125,7 +125,7 @@ Matrix& Matrix::sub(const Matrix &rhs) {
 }
 
 // retour par copie
-Matrix Matrix::sub(const Matrix& rhs) const {
+Matrix Matrix::subToCpy(const Matrix& rhs) const {
     Matrix tmp(*this, max(M, rhs.M), max(N, rhs.N));
     return tmp.sub(rhs);
 }
@@ -143,7 +143,7 @@ Matrix& Matrix::multiply(const Matrix &rhs) {
 }
 
 // retour par copie
-Matrix Matrix::multiply(const Matrix& rhs) const {
+Matrix Matrix::multiplyToCpy(const Matrix& rhs) const {
     Matrix tmp(*this, max(M, rhs.M), max(N, rhs.N));
     return tmp.multiply(rhs);
 }

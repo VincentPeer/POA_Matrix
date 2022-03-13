@@ -120,7 +120,7 @@ public:
 	 * @param rhs la 2e matrice
 	 * @return la matrice résultante par copie
 	 */
-   Matrix sub(const Matrix& rhs) const;
+   Matrix subToCpy(const Matrix& rhs) const;
 
    /**
    * Soustrait les valeurs de la 2e matrices à celle-ci et retourne le résultat dans une matrice crée dynamiquement
@@ -143,7 +143,7 @@ public:
 	 * @param rhs la 2e matrice
 	 * @return la matrice résultante par copie
 	 */
-   Matrix multiply(const Matrix& rhs) const;
+   Matrix multiplyToCpy(const Matrix& rhs) const;
 
    /**
     * Mutliplie les valeurs de deux matrices et retourne le résultat dans une matrice crée dynamiquement
