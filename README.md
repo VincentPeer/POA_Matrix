@@ -32,7 +32,8 @@ maximale possible qui sera attribuée à un élément de cette matrice. Ce const
 Si un des trois paramètres vaut zéro, une exception de type _runtime_error_ est levée. En effet la matrice
 n'aurait plus de sens à être créée avec une telle valeur.  
 Le deuxième constructeur publique est celui de copie à partir d'une matrice existante. Ce constructeur 
-exploite le constructeur privé qui est défini de façon à pouvoir  ... todo ...
+exploite le constructeur privé qui est défini de façon à pouvoir copier le contenu d'une matrice, mais en donnant la 
+possibilitée que la matrice resultante soit plus grande que la matrice copiée.
 Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de la création.
 Le constructeur de copie fait appelle à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
 à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
@@ -59,8 +60,8 @@ Cette méthode s'effectue donc sur deux matrices, l'une étant passée implicite
 Elle attend également en paramètre un pointeur sur une fonction _f_ prenant deux entiers en paramètre. C'est 
 cette fonction _f_ qui définira le type d'opération à effectuer entre deux éléments des matrices.  
 La méthode for_each lève une exception si la valeur des modulos est différentes dans les 2 matrices.
-Si les tailles de matrices diffèrent, le résultat sera de taille max(M1, M2) × max(N1, N2), avec des valeurs
-à 0 pour les éléments hors de la taille commune. Il existe cependant un cas où une exception sera levée si 
+Si les tailles de matrices diffèrent, le résultat sera de taille max(M1, M2) × max(N1, N2). Les éléments non existant 
+seront remplacé avec des valeurs à 0 pour le calcul. Il existe cependant un cas où une exception sera levée si 
 ces tailles diffèrent, lorsque l'opération choisie correspont à la 1ère déclaration qui est définie ci-dessus. En effet,
 la matrice implicite ne va pas voir sa taille modifiée pour satisfaire l'opération. Les deux autres déclaration ont 
 l'avantage de créer sur le moment une matrice est la taille est adaptée selon la taille correcte au moment de la constructon 
