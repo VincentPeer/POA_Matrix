@@ -4,31 +4,39 @@ todo -> allocate vérif ladresse retournée?
     -> allocate et deleteTab pas exacte égal comme nom
     -> srand avec time(null) comme discuté avec lassistant?
     -> check for_each runtime_error dans Matrix.h si vrai ou pas ce que je dis
+    -> finir explication constructeur    
+    -> voir si >> peut lever une exception
+    -> uml
 
-##
-Introduction
+## Introduction
 Ce laboratoire a pour but de développer un programme permettant de créer des matrices en 2 dimensions qui possèdent comme
-éléments des entiers positifs.
+éléments des entiers positifs. Il est possible d'effectuer des opérations arithmétiques entre
+deux matrices. Chacune des opérations possède plusieurs signatures de fonction, l'utilisateur choisi
+à sa convenance une d'entre elle selon la signature qui lui convient.
 
 ## Conception
 
 ### Gestion de l'allocation mémoire
-Pour la création des matrices, nous avons défini 2 méthodes privées qui sont
-allocate() et deleteTab(). La première alloue dynamiquement l'attribut tab qui a eu sa taille
+Pour la création des matrices, nous avons défini deux méthodes privées qui sont
+_allocate()_ et _deleteTab()_. La première alloue dynamiquement l'attribut _tab_ qui a eu sa taille
 spécifiée en paramètre lors de l'appel au constructeur de la matrice. Cette fonctin d'allocation
-est utilisée dans les constructeurs d'une matrice. La méthode deleteTab réalloue la mémoire en 
-restituant la taille allouée pour l'attribut tab d'une matrice. C'est dans le destructeur qu'elle 
+est utilisée dans les constructeurs d'une matrice. La méthode _deleteTab_ désalloue la mémoire en 
+restituant la taille allouée pour l'attribut _tab_ d'une matrice. C'est dans le destructeur qu'elle 
 est appelée.
 
 ### Construction d'une matrice
-Il y a trois constructeurs de matrice définis, deux sont publics et un privé. Une matrice peut être
+Il y a trois constructeurs de matrice définis, deux sont publiques et un privé. Une matrice peut être
 créée en spécifiant le nombre de ligne, le nombre de colonne et un modulo correspondant à la valeur
 maximale possible qui sera attribuée à un élément de cette matrice. Ce constructeur initialise
  aléatoirement les éléments de la matrice, avec des valeurs entre 0 et n-1 si n est la valeur du modulo.
-Si un des trois paramètres vaut zéro, une exception de type runtime_error est levée, en effet la matrice
+Si un des trois paramètres vaut zéro, une exception de type _runtime_error_ est levée. En effet la matrice
 n'aurait plus de sens à être créée avec une telle valeur.  
-Le deuxième constructeur public est celui de copie à partir d'une matrice existante. Ce constructeur 
-exploite le constructeur privé qui est défini de façon à pouvoir
+Le deuxième constructeur publique est celui de copie à partir d'une matrice existante. Ce constructeur 
+exploite le constructeur privé qui est défini de façon à pouvoir  ... todo ...
+Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de la création.
+Le constructeur de copie fait appelle à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
+à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
+plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.
 
 ### Opérations sur matrices
 Les opérations disponibles sont l'addition, la soustraction et la multiplication entre deux matrices. 
@@ -46,17 +54,30 @@ Chacune de ces opérations est définie en trois versions différentes :
     Le retour de la fonction renvoit un pointeur sur la matrice résultante qui vient d'être allouée.
 
 
-Pour la mise en oeuvre de ces opérations, la méthode privée for_each est définie pour factoriser le code semblable à chaque opération. 
+Pour la mise en oeuvre de ces opérations, la méthode privée _for_each_ est définie pour factoriser le code semblable à chaque opération. 
 Cette méthode s'effectue donc sur deux matrices, l'une étant passée implicitement en paramètre et l'autre explicitement. 
-Elle attend également en paramètre un pointeur sur une fonction f prenant deux entiers en paramètre. C'est 
-cette fonction f qui définira le type d'opération à effectuer entre deux éléments des matrices.  
+Elle attend également en paramètre un pointeur sur une fonction _f_ prenant deux entiers en paramètre. C'est 
+cette fonction _f_ qui définira le type d'opération à effectuer entre deux éléments des matrices.  
 La méthode for_each lève une exception si la valeur des modulos est différentes dans les 2 matrices.
 Si les tailles de matrices diffèrent, le résultat sera de taille max(M1, M2) × max(N1, N2), avec des valeurs
 à 0 pour les éléments hors de la taille commune. Il existe cependant un cas où une exception sera levée si 
-ces tailles diffèrent, lorsque l'opération choisie correspont à 1ère déclaration qui est définie ci-dessus. En effet,
+ces tailles diffèrent, lorsque l'opération choisie correspont à la 1ère déclaration qui est définie ci-dessus. En effet,
 la matrice implicite ne va pas voir sa taille modifiée pour satisfaire l'opération. Les deux autres déclaration ont 
 l'avantage de créer sur le moment une matrice est la taille est adaptée selon la taille correcte au moment de la constructon 
 de la matrice qui fera l'objet du résultat.
+
+### Opérateur d'affectation
+Une matrice existante peut se voir affecter les valeurs d'une autre matrice, l'opération d'affectation a été défini
+pour le réaliser. Si les dimensions ou le modulo ne coïncident pas, cela n'a pas d'importance et tout sera semblable
+au retour de la fonction. Avec comme particularité que si les dimensions diffèrent, la matrice est désallouée puis
+réallouée avec la bonne taille. 
+
+### Opérateur d'écriture sur un flux
+Une fonction privée a été définie pour surcharger l'opérateur d'écriture sur un flux pour pouvoir afficher une matrice.
+  L'affichage a pour format :  
+a1 a2 a3   
+b1 b2 b3  
+c1 c2 c3
 
 ### Gestion de l'initialisation aléatoire
 
