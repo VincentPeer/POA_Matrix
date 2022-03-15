@@ -87,3 +87,10 @@ Une méthode getInstance permet de récupérer une instance unique de cette clas
 Finalement une méthode getUnsigned permet de récupérer un entier positif aléatoire. 
 L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir dans une matrice en utilisant la soustraction.
 
+### Tests de fonctionnement
+| Tests          | Résultat |   
+|----------------|----------|
+| Addition       |          |  
+| Soustraction   |          | 
+| Multiplication |          |   
+
