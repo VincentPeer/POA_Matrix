@@ -8,16 +8,17 @@ todo -> allocate vérif ladresse retournée?
 
 ## Introduction
 Ce laboratoire a pour but de développer un programme permettant de créer des matrices en 2 dimensions qui possèdent comme
-éléments des entiers positifs. Il est possible d'effectuer des opérations arithmétiques entre
+éléments des entiers. Il est possible d'effectuer des opérations arithmétiques entre
 deux matrices. Chacune des opérations possède plusieurs signatures de fonction, l'utilisateur choisi
 à sa convenance une d'entre elle selon la signature qui lui convient.
 
-## Conception
+## Choix de conception
 
 ### Gestion de l'allocation mémoire
 Pour la création des matrices, nous avons défini deux méthodes privées qui sont
 _allocate()_ et _deleteTab()_. La première alloue dynamiquement l'attribut _tab_ qui a eu sa taille
-spécifiée en paramètre lors de l'appel au constructeur de la matrice. Cette fonctin d'allocation
+spécifiée en paramètre lors de l'appel au constructeur de la matrice. Nous utilisons un tableau
+classique à 2 dimensions pour _tab_. Cette fonction d'allocation
 est utilisée dans les constructeurs d'une matrice. La méthode _deleteTab_ désalloue la mémoire en 
 restituant la taille allouée pour l'attribut _tab_ d'une matrice. C'est dans le destructeur qu'elle 
 est appelée.
@@ -27,12 +28,12 @@ Il y a trois constructeurs de matrice définis, deux sont publiques et un privé
 créée en spécifiant le nombre de ligne, le nombre de colonne et un modulo correspondant à la valeur
 maximale possible qui sera attribuée à un élément de cette matrice. Ce constructeur initialise
  aléatoirement les éléments de la matrice, avec des valeurs entre 0 et n-1 si n est la valeur du modulo.
-Si un des trois paramètres vaut zéro, une exception de type _runtime_error_ est levée. En effet la matrice
+Si un des trois paramètres vaut zéro (un ou plus), une exception de type _runtime_error_ est levée. En effet la matrice
 n'aurait plus de sens à être créée avec une telle valeur.  
 Le deuxième constructeur publique est celui de copie à partir d'une matrice existante. Ce constructeur 
 exploite le constructeur privé qui est défini de façon à pouvoir copier le contenu d'une matrice, mais en donnant la 
 possibilité que la matrice résultante soit plus grande que la matrice copiée. Ce cas est utile lors des opérations sur 
-matrices, en particulier lorsqu'il faut créer une nouvelle matrice pour le résultat.
+matrices, en particulier lorsqu'il faut créer une nouvelle matrice pour le résultat.  
 Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de la création.
 Le constructeur de copie fait appelle à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
 à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
@@ -81,4 +82,7 @@ c1 c2 c3
 
 ### Gestion de l'initialisation aléatoire
 
-
+Pour avoir une utilisation cohérant du rand fournis par la librairie standard, et appeler un « seed » une seule fois, 
+nous avons créé une classe implémentant le design pattern de singleton. Le constructeur prive va établir le « seed » 
+une seul fois. Puis une méthode getInstance permet de récupérer une instance unique de cette classe. Finalement une méthode 
+getUnsigned permet de récupérer un nombre positif aléatoire.
