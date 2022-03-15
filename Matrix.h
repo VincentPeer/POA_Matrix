@@ -11,7 +11,7 @@
 class Matrix {
    size_t M, N;
    unsigned modulus;
-   int** tab{};
+   unsigned** tab{};
 
    /**
     * Allocation de la mémoire de tab
@@ -46,7 +46,7 @@ class Matrix {
 	 * @throw runtime_erreur exception levée si rhs possède une dimenstion plus grande que celle de this
 	 * @throw invalid_argument exception levée si les modulos des matrices sont différents
 	 */
-	Matrix& for_each(const Matrix& rhs, int (*f)(int a, int b));
+	Matrix& for_each(const Matrix& rhs, int (*f)(unsigned a, unsigned b));
 
 	/**
 	 * Constructeur de copie avec une valeur N et/ou M plus grande que celle de la matrice à copier

@@ -1,5 +1,4 @@
 # POA_Matrix
-todo -> allocate vérif ladresse retournée?
     -> throw des fonctions
     -> srand avec time(null) comme discuté avec lassistant?
     -> check for_each runtime_error dans Matrix.h si vrai ou pas ce que je dis
@@ -59,11 +58,11 @@ Cette méthode s'effectue donc sur deux matrices, l'une étant passée implicite
 Elle attend également en paramètre un pointeur sur une fonction _f_ prenant deux entiers en paramètre. C'est 
 cette fonction _f_ qui définira le type d'opération à effectuer entre deux éléments des matrices.  
 La méthode for_each lève une exception si la valeur des modulos est différentes dans les 2 matrices.
-Si les tailles de matrices diffèrent, le résultat sera de taille max(M1, M2) × max(N1, N2). Les éléments non existant 
+Si les tailles de matrices diffèrent, le résultat sera de taille max(M1, M2) × max(N1, N2). Les éléments non existants 
 seront remplacé avec des valeurs à 0 pour le calcul. Il existe cependant un cas où une exception sera levée si 
-ces tailles diffèrent, lorsque l'opération choisie correspont à la 1ère déclaration qui est définie ci-dessus. En effet,
+ces tailles diffèrent, lorsque l'opération choisie correspond à la 1ère déclaration qui est définie ci-dessus. En effet,
 la matrice implicite ne va pas voir sa taille modifiée pour satisfaire l'opération. Les deux autres déclaration ont 
-l'avantage de créer sur le moment une matrice est la taille est adaptée selon la taille correcte au moment de la constructon 
+l'avantage de créer sur le moment une matrice est la taille est adaptée selon la taille correcte au moment de la construction 
 de la matrice qui fera l'objet du résultat.
 
 ### Opérateur d'affectation
@@ -80,5 +79,10 @@ b1 b2 b3
 c1 c2 c3
 
 ### Gestion de l'initialisation aléatoire
+
+Pour avoir une utilisation cohérant du rand fournis par la librairie standard, et appeler un « seed » une seule fois, 
+nous avons créé une classe implémentant le design pattern de singleton. Le constructeur prive va établir le « seed » une seul fois.
+Puis une méthode getInstance permet de récupérer une instance unique de cette classe.
+Finalement une méthode getUnsigned permet de récupérer un nombre positif aléatoire.
 
 
