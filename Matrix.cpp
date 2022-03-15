@@ -6,20 +6,25 @@
 #include "RandUnsigned.h"
 #include <algorithm>
 #include <cstring>
+#include <cmath>
 
 using namespace std;
 
 // ---- operations
-int multiplyElement(int a, int b) {
+int multiplyElement(unsigned a, unsigned b) {
     return a * b;
 }
 
-int subElement(int a, int b) {
+int subElement(unsigned a, unsigned b) {
     return a - b;
 }
 
-int addElement(int a, int b) {
+int addElement(unsigned a, unsigned b) {
     return a + b;
+}
+
+unsigned mod(int a, unsigned n) {
+   return a - (int) (n * floor((double) a / n));
 }
 
 // Constructeur nouvelle matrice
@@ -27,6 +32,7 @@ Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
     if (M < 1 || N < 1 || n < 1)
         throw runtime_error("In Matrix constructor : Params must be greater than 0");
 
+    cout << "terst safdsfdsf " << mod(-11,7) << endl;
     allocate();
     // Ajout de valeurs aléatoire
     RandUnsigned& rand = RandUnsigned::getInstance();
@@ -47,9 +53,9 @@ Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) : M(M), N(N), modulus(m
 }
 
 void Matrix::allocate() {
-    tab = new int*[M];
+    tab = new unsigned*[M];
     for (size_t i = 0; i < M; ++i)
-        tab[i] = new int[N];
+        tab[i] = new unsigned[N];
 }
 
 void Matrix::copyTab(const Matrix &matrix) {
@@ -154,7 +160,7 @@ Matrix* Matrix::multiplyDynamic(const Matrix& rhs) const {
     return &(tmp->multiply(rhs));
 }
 
-Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
+Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(unsigned , unsigned)) {
     if (rhs.M > M || rhs.N > N)
         throw runtime_error("Can't fit result in matrix");
     // Verification du module n
@@ -164,7 +170,7 @@ Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(int, int)) {
     // Applique le calcul dans une plage incluse dans les deux matrices
     for (size_t i = 0; i < min(M, rhs.M); ++i) {
         for (size_t j = 0; j < min(N, rhs.N); ++j)
-            tab[i][j] = f(tab[i][j], rhs.tab[i][j]) % modulus;
+            tab[i][j] = mod(f(tab[i][j], rhs.tab[i][j]), modulus);
     }
     return *this;
 }

@@ -29,7 +29,7 @@ public :
     * @param max valeur max voulue
     * @return unsigned pseudo aléatoire
     */
-   int getUnsigned(unsigned max);
+   unsigned getUnsigned(unsigned max);
 
    /**
     * Enlève le constructeur par copie

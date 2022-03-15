@@ -27,8 +27,6 @@ int main() {
     Matrix a2(a1);
     printLn(a2, "a2 copy constructor from a1");
 
-
-
     // Opérations simples
     cout << "Matrix simple operations" << endl;
 
@@ -41,8 +39,6 @@ int main() {
     Matrix* r2 = a1.multiplyDynamic(a2);
     printLn(*r2, "a1 * a2 using multiplyDynamic");
     delete r2;
-
-
 
     // Opérations avec Matrices de taille différentes
     cout << "Matrix operations using different matrix sizes" << endl;
@@ -62,20 +58,18 @@ int main() {
     delete r2;
 
     // Opération avec modulo différent
-
+    try {
+       printLn(a1.addToCpy(Matrix(3, 3, 2)));
+    } catch (const runtime_error& e) {
+       cout << e.what() << endl;
+    }
     // Constructeur avec paramètre(s) nul(s)
     try {
         Matrix a3(0, 0, 10);
-    } catch (runtime_error e) {
+    } catch (const runtime_error& e) {
         cout << e.what() << endl << endl;
     }
 
-    // test modulo different
-    try {
-        printLn(a1.addToCpy(Matrix(3, 3, 2)));
-    } catch (runtime_error e) {
-        cout << e.what() << endl;
-    }
 
     return 0;
 }
