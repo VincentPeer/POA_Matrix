@@ -94,18 +94,17 @@ int main() {
     // Opération avec modulo différent
     try {
        printLn(a1.addToCpy(Matrix(3, 3, 2)));
-    } catch (const runtime_error& e) {
-       cout << e.what() << endl;
+    } catch (const invalid_argument& e) {
+       cout << "Operation avec modulo different : " << e.what() << endl;
     }
 
     // Constructeur avec paramètre(s) nul(s)
     try {
         Matrix a3(0, 0, 10);
     } catch (const runtime_error& e) {
-        cout << e.what() << endl << endl;
+       cout << "Constructeur avec parametres nuls : " << e.what() << endl;
     }
     /* --------------------------------------------- */
-
 
     return 0;
 }
