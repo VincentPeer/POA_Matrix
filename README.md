@@ -97,7 +97,7 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 | Affectation  de même taille                                                                          | Ok               | Ok              |
 | Affectation de taille différente                                                                     | Ok               | Ok              |
 | Operation de même modulo                                                                             | Ok               | Ok              |
-| Operation de modulos différents                                                                      | Non ok           | Non ok          |
+| Operation de modulos différents                                                                      | error            | error           |
 | Modulo mathématique (modulo avec nombre<br/> négatif et positif)                                     | Ok               | Ok              |
 | Afficher une matrice avec l'opérateur de flux                                                        | Ok               | Ok              |
 | Les opérations sont effectuées modulo n                                                              | Ok               | Ok              |
@@ -108,9 +108,9 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 | Lors d'une op. de taille différente, Ai,j et Bi,j<br/> manquants sont remplacés par des 0            | Ok               | Ok              |
 | Exception de type invalid_argument levée si<br/> les modulos sont différents                         | Ok               | Ok              |
 | Exception de type runtime_error pour toute<br/> autre erreur                                         | Ok               | Ok              |
-| Construction matrice N = 0, M et modulo quelconque                                                   | Non ok           | Non ok          |
-| Construction matrice M = 0, N et modulo quelconque                                                   | Non ok           | Non ok          |
-| Construction matrice modulo = 0, M et N quelconque                                                   | Non ok           | Non ok          |
+| Construction matrice N = 0, M et modulo quelconque                                                   | error            | error           |
+| Construction matrice M = 0, N et modulo quelconque                                                   | error            | error           |
+| Construction matrice modulo = 0, M et N quelconque                                                   | error            | error           |
 | Construction matrice 1 seule ligne                                                                   | Ok               | Ok              |
 | Construction matrice 1 seule colonne                                                                 | Ok               | Ok              |
 | Construction matrice init. à 0 avec modulo = 1                                                       | Ok               | Ok              |
