@@ -164,7 +164,7 @@ Matrix& Matrix::for_each(const Matrix& rhs, int (*f)(unsigned , unsigned)) {
         throw runtime_error("Can't fit result in matrix");
     // Verification du module n
     if(modulus != rhs.modulus)
-        throw invalid_argument("n modules don't match");
+       throw invalid_argument("n modules don't match");
 
     // Applique le calcul dans une plage incluse dans les deux matrices
     for (size_t i = 0; i < min(M, rhs.M); ++i) {
