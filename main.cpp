@@ -64,9 +64,7 @@ int main() {
     /*  Opérations avec Matrices de taille différentes */
     cout << "Matrix operations using different matrix sizes" << endl;
 
-    //Matrix d1(5, 4, mod); // todo faire avec oneRaw oneCol
     printLn(oneRaw, "ONE");
-    //Matrix d2(2,2,mod);
     printLn(oneCol, "TWO");
 
     r2 = oneRaw.addDynamic(oneCol);
