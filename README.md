@@ -1,9 +1,6 @@
-# POA_Matrix
-    -> throw des fonctions
-    -> srand avec time(null) comme discuté avec lassistant?
-    -> check for_each runtime_error dans Matrix.h si vrai ou pas ce que je dis
-    -> uml
-    -> tab de unsigned?
+#### <div style="text-align: right">De Bleser Dimitri - Peer Vincent</div>
+
+# POA Labo 1 : Matrix
 
 ## Introduction
 Ce laboratoire a pour but de développer un programme permettant de créer des matrices en 2 dimensions qui possèdent comme
@@ -114,7 +111,7 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 | Construction matrice 1 seule ligne                                                                   | Ok               | Ok              |
 | Construction matrice 1 seule colonne                                                                 | Ok               | Ok              |
 | Construction matrice init. à 0 avec modulo = 1                                                       | Ok               | Ok              |
-|                                                                                                      |                  |                 |
-|                                                                                                      |                  |                 |
-|                                                                                                      |                  |                 |
 
+### UML
+
+<img src="C:/Users/dimde/OneDrive/HEIG/HEIG - S4/POA/POA_Matrix/assets/POA_Matrix_UML.png" alt="UML" />

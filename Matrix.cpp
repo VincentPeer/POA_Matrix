@@ -37,7 +37,7 @@ Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
     RandUnsigned& rand = RandUnsigned::getInstance();
     for (size_t i = 0; i < M; ++i)
         for (size_t j = 0; j < N; ++j)
-            tab[i][j] = rand.getUnsigned(modulus);
+            tab[i][j] = rand.getUnsigned(modulus - 1);
 }
 
 // Constructeur de copie, renvoie le travail au constructeur copie spécialisé
