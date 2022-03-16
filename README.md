@@ -112,6 +112,6 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 | Construction matrice 1 seule colonne                                                                 | Ok               | Ok              |
 | Construction matrice init. à 0 avec modulo = 1                                                       | Ok               | Ok              |
 
-### UML
+### UML 
 
-<img src="C:/Users/dimde/OneDrive/HEIG/HEIG - S4/POA/POA_Matrix/assets/POA_Matrix_UML.png" alt="UML" />
+![img.png](img.png)
