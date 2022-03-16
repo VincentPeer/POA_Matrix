@@ -20,8 +20,8 @@ int main() {
     printLn(oneRaw, "oneRaw");
 
     // Construction avec M quelconque et N = 1
-    Matrix onecol(5, 1, mod);
-    printLn(onecol, "oneCol");
+    Matrix oneCol(5, 1, mod);
+    printLn(oneCol, "oneCol");
 
     // Construction modulo à 1 pour une matrice à valeurs nulles
     Matrix empty(4, 4, 1);
@@ -64,18 +64,18 @@ int main() {
     /*  Opérations avec Matrices de taille différentes */
     cout << "Matrix operations using different matrix sizes" << endl;
 
-    Matrix d1(5, 4, mod); // todo faire avec oneRaw oneCol
-    printLn(d1, "ONE");
-    Matrix d2(2,2,mod);
-    printLn(d2, "TWO");
+    printLn(oneRaw, "ONE");
+    printLn(oneCol, "TWO");
 
-    r2 = d1.addDynamic(d2);
+    r2 = oneRaw.addDynamic(oneCol);
     printLn(*r2, "ONE + TWO using addDynamic");
     delete r2;
 
-    r2 = d2.addDynamic(d1);
+    r2 = oneCol.addDynamic(oneRaw);
     printLn(*r2, "TWO + ONE using addDynamic");
     delete r2;
+
+    printLn(oneRaw.subToCpy(oneCol), "ONE - TWO");
     /* --------------------------------------------- */
 
 
