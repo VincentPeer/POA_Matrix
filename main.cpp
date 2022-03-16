@@ -15,6 +15,18 @@ int main() {
     /* -------- Construction d'une matrice -------- */
     cout << "Matrix construction" << endl;
 
+    // Construction avec M = 1 et N quelconque
+    Matrix oneRaw(1, 5, mod);
+    printLn(oneRaw, "oneRaw");
+
+    // Construction avec M quelconque et N = 1
+    Matrix onecol(5, 1, mod);
+    printLn(onecol, "oneCol");
+
+    // Construction modulo à 1 pour une matrice à valeurs nulles
+    Matrix empty(4, 4, 1);
+    printLn(empty, "empty");
+
     // Constructeur taille et modulo minimal puis copie
     Matrix b1(1,1,1);
     Matrix b2(b1);
@@ -52,7 +64,7 @@ int main() {
     /*  Opérations avec Matrices de taille différentes */
     cout << "Matrix operations using different matrix sizes" << endl;
 
-    Matrix d1(5, 4, mod);
+    Matrix d1(5, 4, mod); // todo faire avec oneRaw oneCol
     printLn(d1, "ONE");
     Matrix d2(2,2,mod);
     printLn(d2, "TWO");
