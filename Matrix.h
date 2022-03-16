@@ -9,7 +9,7 @@
  * De Bleser Dimitri et Peer Vincent
  */
 class Matrix {
-   size_t M, N;
+   size_t M, N; // M = ligne et N = colonne
    unsigned modulus;
    unsigned** tab{};
 
@@ -60,12 +60,12 @@ class Matrix {
 public:
    /**
     * Constructeur avec valeurs aléatoires
-    * @param N nombre de lignes de la matrice
-    * @param M nombre de colones de la matrice
+    * @param M nombre de lignes de la matrice
+    * @param N nombre de colones de la matrice
     * @param n valeur max
     * @throw runtime_error exception levée si l'un des paramètre est nulle
     */
-   Matrix(size_t N, size_t M, unsigned n);
+   Matrix(size_t M, size_t N, unsigned n);
 
    /**
     * Constructeur par copie

@@ -92,22 +92,28 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 |------------------------------------------------------------------------------------------------------|------------------|-----------------|
 | Opération de même taille                                                                             | Ok               | Ok              |  
 | Opération de taille différente                                                                       | Ok               | Ok              | 
-| Copie de même taille                                                                                 |                  |                 |   
-| Copie de taille différente                                                                           |                  |                 |
-| Affectation  de même taille                                                                          |                  |                 |
-| Affectation de taille différente                                                                     |                  |                 |
-| Operation de même modulo                                                                             |                  |                 |
-| Operation de modulos différents                                                                      |                  |                 |
-| Générer une matrice à nombre aléatoire<br/>entre 0 et n-1                                            |                  |                 |
-| Afficher une matrice avec l'opérateur de flux                                                        |                  |                 |
-| Les opérations sont effectuées modulo n                                                              |                  |                 |
-| Chaque opération peut modifier la matrice sur <br/> laquelle est invoquée la méthode                 |                  |                 |
-| Chaque opération peut retourner par valeur une<br/> nouvelle matrice résultat   allouée statiquement |                  |                 |
-| Chaque opération peut retourner un pointeur sur<br/> une nouvelle matrice résultat    allouée dyn.   |                  |                 |
-| L'opération de taille différente donne en résultat<br/> une taille de  max(M1, M2) × max(N1, N2)     |                  |                 |
-| Lors d'une op. de taille différente, Ai,j et Bi,j<br/> manquants sont remplacés par des 0            |                  |                 |
-| Exception de type invalid_argument levée si<br/> les modulos sont différents                         |                  |                 |
-| Exception de type runtime_error pour toute<br/> autre d'erreur                                            |                  |                 |
+| Constructeur avec nombre aléatoire entre <br/>0 et n-1                                               | Ok               | Ok              |   
+| Dupliquer une matrice (constructeur de copie)                                                        | Ok               | Ok              |
+| Affectation  de même taille                                                                          | Ok               | Ok              |
+| Affectation de taille différente                                                                     | Ok               | Ok              |
+| Operation de même modulo                                                                             | Ok               | Ok              |
+| Operation de modulos différents                                                                      | Non ok           | Non ok          |
+| Modulo mathématique (modulo avec nombre<br/> négatif et positif)                                     | Ok               | Ok              |
+| Afficher une matrice avec l'opérateur de flux                                                        | Ok               | Ok              |
+| Les opérations sont effectuées modulo n                                                              | Ok               | Ok              |
+| Chaque opération peut modifier la matrice sur <br/> laquelle est invoquée la méthode                 | Ok               | Ok              |
+| Chaque opération peut retourner par valeur une<br/> nouvelle matrice résultat   allouée statiquement | Ok               | Ok              |
+| Chaque opération peut retourner un pointeur sur<br/> une nouvelle matrice résultat    allouée dyn.   | Ok               | Ok              |
+| L'opération de taille différente donne en résultat<br/> une taille de  max(M1, M2) × max(N1, N2)     | Ok               | Ok              |
+| Lors d'une op. de taille différente, Ai,j et Bi,j<br/> manquants sont remplacés par des 0            | Ok               | Ok              |
+| Exception de type invalid_argument levée si<br/> les modulos sont différents                         | Ok               | Ok              |
+| Exception de type runtime_error pour toute<br/> autre erreur                                         | Ok               | Ok              |
+| Construction matrice N = 0, M et modulo quelconque                                                   | Non ok           | Non ok          |
+| Construction matrice M = 0, N et modulo quelconque                                                   | Non ok           | Non ok          |
+| Construction matrice modulo = 0, M et N quelconque                                                   | Non ok           | Non ok          |
+| Construction matrice 1 seule ligne                                                                   | Ok               | Ok              |
+| Construction matrice 1 seule colonne                                                                 | Ok               | Ok              |
+| Construction matrice init. à 0 avec modulo = 1                                                       | Ok               | Ok              |
 |                                                                                                      |                  |                 |
 |                                                                                                      |                  |                 |
 |                                                                                                      |                  |                 |
