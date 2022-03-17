@@ -25,7 +25,7 @@ int main() {
 
     // Construction modulo à 1 pour une matrice à valeurs nulles
     Matrix empty(4, 4, 1);
-    printLn(empty, "empty");
+    printLn(empty, "modulus == 0");
 
     // Constructeur taille et modulo minimal puis copie
     Matrix b1(1,1,1);
@@ -43,7 +43,7 @@ int main() {
 
     // Constructeur avec modulo négatif
     Matrix modNeg(3, 3, -3);
-    printLn(modNeg, "Matrix(-3,-3,-3)");
+    printLn(modNeg, "Matrix(3,3,-3)");
     /* --------------------------------------------- */
 
 

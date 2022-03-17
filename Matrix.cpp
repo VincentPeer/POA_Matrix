@@ -140,7 +140,7 @@ Matrix* Matrix::subDynamic(const Matrix& rhs) const {
 // --- MULTYPLY ---
 // Modifie la matrice
 Matrix& Matrix::multiply(const Matrix &rhs) {
-    return this->for_each(rhs, multiplyElement);;
+    return this->for_each(rhs, multiplyElement);
 }
 
 // retour par copie

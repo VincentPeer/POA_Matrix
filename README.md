@@ -35,10 +35,10 @@ Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de
 Le constructeur de copie fait appel à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
 à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
 plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.  
-Il n'est possible de créer une matrice en lui donnant des tailles négatives, les tailles étant des
-size_t, la valeur négatives est alors converties en non signé d'une valeur trop grande pour 
-créer un tableau et une erreur est générée. Un modulo négatif est autorisé et sans erreur mais
-donne comme valeur 2^32 - valeur.
+Il n'est pas possible de créer une matrice en lui donnant des tailles négatives, les tailles étant des
+size_t, la valeur négative est alors convertie en non signé d'une valeur trop grande pour 
+créer un tableau et une erreur est générée. Une création avec un modulo négatif est autorisé et sans erreur mais
+la valeur sera convertie implicitement en non signé et vaudra 2^32 - valeur.
 
 ### Opérations sur matrices
 Les opérations disponibles sont l'addition, la soustraction et la multiplication entre deux matrices. 
