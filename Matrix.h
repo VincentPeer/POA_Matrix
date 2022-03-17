@@ -15,6 +15,7 @@ class Matrix {
 
    /**
     * Allocation de la mémoire de tab
+    * @throw bad_array_new_length exception levée si la taille demandée est trop grande
     */
    void allocate();
 

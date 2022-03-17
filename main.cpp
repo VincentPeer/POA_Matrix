@@ -42,7 +42,7 @@ int main() {
     printLn(a2, "a2 copy constructor from a1");
 
     // Constructeur avec valeur négative
-    Matrix a3(3,3,-3);
+    Matrix a3(-1,-1 ,3);
     printLn(a3, "Matrix(-3,-3,-3)");
     /* --------------------------------------------- */
 
