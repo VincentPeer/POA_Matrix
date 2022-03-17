@@ -1,4 +1,5 @@
 #### <div style="text-align: right">De Bleser Dimitri - Peer Vincent</div>
+#### <div style="text-align: right">17 mars 2022</div>
 
 # POA Labo 1 : Matrix
 
@@ -33,7 +34,11 @@ matrices, en particulier lorsqu'il faut créer une nouvelle matrice pour le rés
 Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de la création d'une instance.
 Le constructeur de copie fait appel à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
 à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
-plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.
+plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.  
+Il n'est possible de créer une matrice en lui donnant des tailles négatives, les tailles étant des
+size_t, la valeur négatives est alors converties en non signé d'une valeur trop grande pour 
+créer un tableau et une erreur est générée. Un modulo négatif est autorisé et sans erreur mais
+donne comme valeur 2^32 - valeur.
 
 ### Opérations sur matrices
 Les opérations disponibles sont l'addition, la soustraction et la multiplication entre deux matrices. 
@@ -86,33 +91,33 @@ L'initialisation se fait donc sans nombre négatif, il peut toutefois en avoir d
 
 ### Tests de fonctionnement
 | Test effectué                                                                                        | Résultat attendu | Résultat obtenu |   
-|------------------------------------------------------------------------------------------------------|-----------------|-----------------|
-| Opération de même taille                                                                             | Ok              | Ok              |  
-| Opération de taille différente                                                                       | Ok              | Ok              | 
-| Constructeur avec nombre aléatoire entre <br/>0 et n-1                                               | Ok              | Ok              |   
-| Dupliquer une matrice (constructeur de copie)                                                        | Ok              | Ok              |
-| Affectation  de même taille                                                                          | Ok              | Ok              |
-| Affectation de taille différente                                                                     | Ok              | Ok              |
-| Operation de même modulo                                                                             | Ok              | Ok              |
-| Operation de modulos différents                                                                      | error           | error           |
-| Modulo mathématique (modulo avec nombre<br/> négatif et positif)                                     | Ok              | Ok              |
-| Afficher une matrice avec l'opérateur de flux                                                        | Ok              | Ok              |
-| Les opérations sont effectuées modulo n                                                              | Ok              | Ok              |
-| Chaque opération peut modifier la matrice sur <br/> laquelle est invoquée la méthode                 | Ok              | Ok              |
-| Chaque opération peut retourner par valeur une<br/> nouvelle matrice résultat   allouée statiquement | Ok              | Ok              |
-| Chaque opération peut retourner un pointeur sur<br/> une nouvelle matrice résultat    allouée dyn.   | Ok              | Ok              |
-| L'opération de taille différente donne en résultat<br/> une taille de  max(M1, M2) × max(N1, N2)     | Ok              | Ok              |
-| Lors d'une op. de taille différente, Ai,j et Bi,j<br/> manquants sont remplacés par des 0            | Ok              | Ok              |
-| Exception de type invalid_argument levée si<br/> les modulos sont différents                         | Ok              | Ok              |
-| Exception de type runtime_error pour toute<br/> autre erreur                                         | Ok              | Ok              |
-| Construction matrice N = 0, M et modulo quelconque                                                   | error           | error           |
-| Construction matrice M = 0, N et modulo quelconque                                                   | error           | error           |
-| Construction matrice modulo = 0, M et N quelconque                                                   | error           | error           |
-| Construction matrice 1 seule ligne                                                                   | Ok              | Ok              |
-| Construction matrice 1 seule colonne                                                                 | Ok              | Ok              |
-| Construction matrice init. à 0 avec modulo = 1                                                       | Ok              | Ok              |
-| Construction matrice avec taille négative                                                            | Erreur          | Erreur          |
-| Matrice avec modulo négatif                                                                          | Ok              | Ok              |
+|------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| Opération de même taille                                                                             | Ok               | Ok              |  
+| Opération de taille différente                                                                       | Ok               | Ok              | 
+| Constructeur avec nombre aléatoire entre <br/>0 et n-1                                               | Ok               | Ok              |   
+| Dupliquer une matrice (constructeur de copie)                                                        | Ok               | Ok              |
+| Affectation  de même taille                                                                          | Ok               | Ok              |
+| Affectation de taille différente                                                                     | Ok               | Ok              |
+| Operation de même modulo                                                                             | Ok               | Ok              |
+| Operation de modulos différents                                                                      | Erreur           | Erreur           |
+| Modulo mathématique (modulo avec nombre<br/> négatif et positif)                                     | Ok               | Ok              |
+| Afficher une matrice avec l'opérateur de flux                                                        | Ok               | Ok              |
+| Les opérations sont effectuées modulo n                                                              | Ok               | Ok              |
+| Chaque opération peut modifier la matrice sur <br/> laquelle est invoquée la méthode                 | Ok               | Ok              |
+| Chaque opération peut retourner par valeur une<br/> nouvelle matrice résultat   allouée statiquement | Ok               | Ok              |
+| Chaque opération peut retourner un pointeur sur<br/> une nouvelle matrice résultat    allouée dyn.   | Ok               | Ok              |
+| L'opération de taille différente donne en résultat<br/> une taille de  max(M1, M2) × max(N1, N2)     | Ok               | Ok              |
+| Lors d'une op. de taille différente, Ai,j et Bi,j<br/> manquants sont remplacés par des 0            | Ok               | Ok              |
+| Exception de type invalid_argument levée si<br/> les modulos sont différents                         | Ok               | Ok              |
+| Exception de type runtime_error pour toute<br/> autre erreur                                         | Ok               | Ok              |
+| Construction matrice N = 0, M et modulo quelconque                                                   | Erreur            | Erreur           |
+| Construction matrice M = 0, N et modulo quelconque                                                   | Erreur            | Erreur           |
+| Construction matrice modulo = 0, M et N quelconque                                                   | Erreur            | Erreur           |
+| Construction matrice 1 seule ligne                                                                   | Ok               | Ok              |
+| Construction matrice 1 seule colonne                                                                 | Ok               | Ok              |
+| Construction matrice init. à 0 avec modulo = 1                                                       | Ok               | Ok              |
+| Construction matrice avec taille négative                                                            | Erreur           | Erreur          |
+| Matrice avec modulo négatif                                                                          | Ok               | Ok              |
 
 ### UML 
 

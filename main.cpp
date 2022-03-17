@@ -41,9 +41,9 @@ int main() {
     Matrix a2(a1);
     printLn(a2, "a2 copy constructor from a1");
 
-    // Constructeur avec valeur négative
-    Matrix a3(3,3,-3);
-    printLn(a3, "Matrix(-3,-3,-3)");
+    // Constructeur avec modulo négatif
+    Matrix modNeg(3, 3, -3);
+    printLn(modNeg, "Matrix(-3,-3,-3)");
     /* --------------------------------------------- */
 
 
