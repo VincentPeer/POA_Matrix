@@ -28,7 +28,7 @@ Matrix::Matrix(size_t M, size_t N, unsigned n)  : M(M), N(N), modulus(n) {
     if (M < 1 || N < 1 || n < 1)
         throw runtime_error("In Matrix constructor : Params must be greater than 0");
 
-    allocate();
+   allocateTab();
     // Ajout de valeurs aléatoire
     RandUnsigned& rand = RandUnsigned::getInstance();
     for (size_t i = 0; i < M; ++i)
@@ -43,11 +43,11 @@ Matrix::Matrix(const Matrix &matrix) : Matrix(matrix, matrix.M, matrix.N) {}
 Matrix::Matrix(const Matrix &matrix, size_t M, size_t N) : M(M), N(N), modulus(matrix.modulus) {
     if (M < matrix.M || N < matrix.N)
         throw runtime_error("In Matrix copy constructor : Given sizes are too small");
-    allocate();
+   allocateTab();
     copyTab(matrix);
 }
 
-void Matrix::allocate() {
+void Matrix::allocateTab() {
     tab = new unsigned*[M];
     for (size_t i = 0; i < M; ++i)
         tab[i] = new unsigned[N];
@@ -83,7 +83,7 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
             deleteTab();
             M = matrix.M;
             N = matrix.N;
-            allocate();
+           allocateTab();
         }
         copyTab(matrix);
     }
