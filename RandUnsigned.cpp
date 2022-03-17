@@ -1,7 +1,3 @@
-//
-// Created by dimde on 3/11/2022.
-//
-
 #include <cstdlib>
 #include <ctime>
 #include "RandUnsigned.h"

@@ -1,7 +1,3 @@
-//
-// Created by dimde on 3/11/2022.
-//
-
 #ifndef POA_MATRIX_RANDUNSIGNED_H
 #define POA_MATRIX_RANDUNSIGNED_H
 

@@ -1,4 +1,5 @@
 #### <div style="text-align: right">De Bleser Dimitri - Peer Vincent</div>
+#### <div style="text-align: right">17 mars 2022</div>
 
 # POA Labo 1 : Matrix
 
@@ -33,7 +34,11 @@ matrices, en particulier lorsqu'il faut créer une nouvelle matrice pour le rés
 Les constructeurs appellent _allocate()_ pour l'allocation mémoire au moment de la création d'une instance.
 Le constructeur de copie fait appel à la méthode privée _copyTab()_ qui effectue une copie des éléments de la matrice 
 à copier, c'est-à-dire l'attribut _tab_. _CopyTab()_ prévoit le cas où la nouvelle matrice peut avoir une taille
-plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.
+plus grande que celle copiée, dans ce cas les éléments non copiable sont mis à 0.  
+Il n'est possible de créer une matrice en lui donnant des tailles négatives, les tailles étant des
+size_t, la valeur négatives est alors converties en non signé d'une valeur trop grande pour 
+créer un tableau et une erreur est générée. Un modulo négatif est autorisé et sans erreur mais
+donne comme valeur 2^32 - valeur.
 
 ### Opérations sur matrices
 Les opérations disponibles sont l'addition, la soustraction et la multiplication entre deux matrices. 

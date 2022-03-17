@@ -1,7 +1,3 @@
-//
-// Created by dimde on 2/24/2022.
-//
-
 #include "Matrix.h"
 #include "RandUnsigned.h"
 #include <algorithm>
